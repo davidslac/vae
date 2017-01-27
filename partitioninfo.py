@@ -5,10 +5,6 @@ from __future__ import print_function
 import numpy as np
 import h5py
 
-# for testing
-import batchgen
-import collections
-
 class PartitionInfo(object):
     def __init__(self, **kwargs):
         fname = kwargs.pop('fname', None)
@@ -59,14 +55,3 @@ class PartitionInfo(object):
             arr[partition]=num
         return arr
 
-def test_partition_info(fname):
-    partition_info = PartitionInfo()
-    partition_info.load(fname)
-    sample2partition = partition_info.get_sample2partition_array()
-    partitions = []
-    for samples in batchgen.gen_samples(partition_info, epochs=1):
-        partitions.extend(sample2partition[samples])
-    partition_counts = collections.Counter(partitions)
-
-    for partition,count in partition_counts.iteritems():
-        print(" %d:%d" % (partition, count))

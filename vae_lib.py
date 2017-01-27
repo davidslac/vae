@@ -7,7 +7,7 @@ import h5py
 from scipy.misc import imresize
 import collections
 
-from partitioninfo import PartitionInfo, test_partition_info
+from partitioninfo import PartitionInfo
 
 '''
 Balances the samples.
@@ -152,5 +152,3 @@ def balance(h5in_fname, h5out_fname):
           (w2, 'label_1_gasdet_high_img_3', subsets['label_1']['gasdet_high']['img_3'])]
     partition_info = PartitionInfo(fname=h5in_fname, info=info)
     partition_info.save(h5out_fname)
-
-
